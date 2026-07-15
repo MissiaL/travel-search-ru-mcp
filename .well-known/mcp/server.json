@@ -1,0 +1,16 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "name": "io.github.MissiaL/travel-search-ru-mcp",
+  "description": "Travel search through Aviasales, Travelata, Level.Travel, and Sputnik8",
+  "repository": {
+    "url": "https://github.com/MissiaL/travel-search-ru-mcp",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "url": "https://mcp.botclaw.ru/travel",
+      "type": "streamable-http"
+    }
+  ]
+}
