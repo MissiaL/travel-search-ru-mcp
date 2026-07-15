@@ -2,17 +2,28 @@
 
 # Travel Search RU MCP
 
-Remote MCP server for travel search through **Aviasales**, **Travelata**,
-**Level.Travel**, and **Sputnik8**. It finds flights, package tours, hotels, and
-activities with current prices and booking links. Russian city, country, and
-resort names are supported. No API key or local server installation is required.
+Add travel search to **Claude**, **Codex**, **OpenClaw**, **Hermes**, or any
+MCP-compatible AI agent. Find flights, package tours, hotels, and activities
+with current prices and booking links through **Aviasales**, **Travelata**,
+**Level.Travel**, and **Sputnik8**.
+
+- Remote Streamable HTTP MCP — no local server to run
+- No signup, API key, or authentication required
+- Russian city, country, and resort names supported
+- Read-only search — booking and payment stay on the provider's website
+
+- **Endpoint:** `https://mcp.botclaw.ru/travel`
+- **Version:** `1.0.0`
 
 ## Connect
 
-- Endpoint: `https://mcp.botclaw.ru/travel`
-- Transport: Streamable HTTP
-- Authentication: none
-- Version: `1.0.0`
+### Claude Desktop
+
+1. Open **Settings → Connectors**.
+2. Select **+ → Add custom connector**.
+3. Enter `Travel Search RU` as the name.
+4. Enter `https://mcp.botclaw.ru/travel` as the URL and save.
+5. Enable the connector in a conversation from **+ → Connectors**.
 
 Claude Code:
 
@@ -20,7 +31,51 @@ Claude Code:
 claude mcp add --transport http travel-search-ru https://mcp.botclaw.ru/travel
 ```
 
-JSON configuration:
+### Codex
+
+ChatGPT Desktop and the Codex IDE extension:
+
+1. Open **Settings → MCP servers**.
+2. Select **Add server** and choose **Streamable HTTP**.
+3. Enter `Travel Search RU` and `https://mcp.botclaw.ru/travel`.
+4. Save and restart the client.
+
+Codex CLI:
+
+```bash
+codex mcp add travel-search-ru --url https://mcp.botclaw.ru/travel
+```
+
+### OpenClaw
+
+Add the server to your OpenClaw configuration:
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "travel-search-ru": {
+        "url": "https://mcp.botclaw.ru/travel",
+        "transport": "streamable-http"
+      }
+    }
+  }
+}
+```
+
+### Hermes Agent
+
+Add the server to your Hermes MCP configuration:
+
+```yaml
+mcp_servers:
+  travel-search-ru:
+    url: "https://mcp.botclaw.ru/travel"
+```
+
+### Other MCP clients
+
+Use the public endpoint with the Streamable HTTP transport:
 
 ```json
 {
@@ -32,6 +87,31 @@ JSON configuration:
   }
 }
 ```
+
+## Try it
+
+After connecting the server, ask your agent:
+
+```text
+Find the cheapest dates to fly from Moscow to Istanbul in September.
+```
+
+```text
+Compare package tours to Turkey for two adults and an 8-year-old child under 250,000 RUB.
+```
+
+```text
+Plan a week in Rome: flights, a hotel, and activities.
+```
+
+## What it searches
+
+| Category | Sources | What you get |
+|---|---|---|
+| Flights | Aviasales | Dated offers, passenger-aware search, and a monthly price calendar |
+| Package tours | Travelata and Level.Travel | Combined tour results with hotels, meals, dates, and booking links |
+| Hotels | Level.Travel | Hotel-only stays for the requested dates and party |
+| Activities | Sputnik8 | Excursions, attraction tickets, and transfers |
 
 ## Tools
 
@@ -47,20 +127,38 @@ JSON configuration:
 
 ## Safety and privacy
 
-The server searches and compares offers only. Booking and payment happen on the
-travel provider's website after the user follows a result link.
+The server searches and compares offers only. It cannot book a trip or take a
+payment. Booking and payment happen on the travel provider's website after the
+user follows a result link. Prices and availability can change; refresh a
+selected package offer before booking and verify the final details on the
+provider's website.
 
-Travel search parameters are sent to Botclaw and the named travel services. They
-may include destinations, dates, party size, and children's ages when required for
-accurate pricing. Do not include unrelated personal information in search requests.
+Search parameters are sent to Botclaw and the named travel services. They may
+include destinations, dates, party size, and children's ages when required for
+accurate pricing. Do not include unrelated personal information in search
+requests.
 
 ## Русский
 
-Travel Search RU MCP помогает искать путешествия через **Aviasales**,
-**Travelata**, **Level.Travel** и **Sputnik8**. Сервер находит авиабилеты,
-пакетные туры, отели без перелёта и экскурсии, сравнивает цены и возвращает
-ссылки для бронирования. Поддерживаются русские названия городов, стран и
-курортов. API-ключ и локальная установка сервера не требуются.
+Travel Search RU MCP добавляет поиск путешествий в Claude, Codex, OpenClaw,
+Hermes и другие AI-агенты с поддержкой MCP. Сервер ищет авиабилеты, пакетные
+туры, отели без перелёта и экскурсии, сравнивает цены и возвращает ссылки для
+бронирования. Поддерживаются русские названия городов, стран и курортов.
+Регистрация, API-ключ и локальный сервер не нужны.
+
+После подключения попробуйте:
+
+```text
+Найди самые дешёвые даты для перелёта из Москвы в Стамбул в сентябре.
+```
+
+```text
+Сравни туры в Турцию для двух взрослых и ребёнка 8 лет до 250 000 ₽.
+```
+
+```text
+Собери поездку в Рим на неделю: перелёт, отель и экскурсии.
+```
 
 Сервер выполняет только поиск. Бронирование и оплата происходят на сайте
 выбранного сервиса. Параметры поездки передаются Botclaw и перечисленным выше
