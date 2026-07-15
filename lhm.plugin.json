@@ -1,0 +1,439 @@
+{
+  "author": "MissiaL",
+  "authorUrl": "https://github.com/MissiaL",
+  "category": "Travel & Transport",
+  "cloudEndpoint": "https://mcp.botclaw.ru/travel",
+  "description": "MCP for travel search through Aviasales, Travelata, Level.Travel, and Sputnik8. Find flights, package tours, hotels, and activities with current prices and booking links. Supports Russian city, country, and resort names. No API key required.",
+  "homepage": "https://github.com/MissiaL/travel-search-ru-mcp",
+  "icon": "✈️",
+  "identifier": "missial-travel-search-ru-mcp",
+  "localizations": [
+    {
+      "description": "MCP для поиска путешествий через Aviasales, Travelata, Level.Travel и Sputnik8. Помогает находить авиабилеты, пакетные туры, отели и экскурсии, сравнивать цены и получать ссылки для бронирования. Поддерживает русские названия городов, стран и курортов. API-ключ не требуется.",
+      "locale": "ru-RU",
+      "name": "Travel Search RU MCP",
+      "tags": [
+        "путешествия",
+        "авиабилеты",
+        "туры",
+        "отели",
+        "экскурсии"
+      ]
+    }
+  ],
+  "name": "Travel Search RU MCP",
+  "tags": [
+    "travel",
+    "flights",
+    "tours",
+    "hotels",
+    "activities"
+  ],
+  "tools": [
+    {
+      "name": "get_flight_price_calendar",
+      "description": "Календарь цен на авиабилеты за месяц: цена по дням и самый дешёвый день.",
+      "inputSchema": {
+        "properties": {
+          "origin": {
+            "title": "Origin",
+            "type": "string"
+          },
+          "destination": {
+            "title": "Destination",
+            "type": "string"
+          },
+          "month": {
+            "title": "Month",
+            "type": "string"
+          },
+          "direct": {
+            "default": false,
+            "title": "Direct",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "origin",
+          "destination",
+          "month"
+        ],
+        "title": "get_flight_price_calendarArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "get_tour_details",
+      "description": "Актуализация выбранного тура перед бронированием: подтверждённая цена, трансфер, номера. offer_id — из результатов search_tours или search_hotels.",
+      "inputSchema": {
+        "properties": {
+          "offer_id": {
+            "title": "Offer Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "offer_id"
+        ],
+        "title": "get_tour_detailsArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "list_destinations",
+      "description": "Справка: города вылета и доступные страны. Если передать страну — вернёт её курорты. Вызывай, когда название не распозналось.",
+      "inputSchema": {
+        "properties": {
+          "country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Country"
+          }
+        },
+        "title": "list_destinationsArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "search_activities",
+      "description": "Поиск экскурсий, билетов и трансферов в городе. Есть текстовый фильтр по названию.",
+      "inputSchema": {
+        "properties": {
+          "city": {
+            "title": "City",
+            "type": "string"
+          },
+          "query": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Query"
+          },
+          "limit": {
+            "default": 10,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "city"
+        ],
+        "title": "search_activitiesArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "search_flights",
+      "description": "Поиск авиабилетов на конкретные даты. Цена — за одного взрослого. Города — по-русски или кодом IATA.",
+      "inputSchema": {
+        "properties": {
+          "origin": {
+            "title": "Origin",
+            "type": "string"
+          },
+          "destination": {
+            "title": "Destination",
+            "type": "string"
+          },
+          "depart_date": {
+            "title": "Depart Date",
+            "type": "string"
+          },
+          "return_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Return Date"
+          },
+          "adults": {
+            "default": 1,
+            "title": "Adults",
+            "type": "integer"
+          },
+          "children": {
+            "default": 0,
+            "title": "Children",
+            "type": "integer"
+          },
+          "infants": {
+            "default": 0,
+            "title": "Infants",
+            "type": "integer"
+          },
+          "trip_class": {
+            "default": 0,
+            "title": "Trip Class",
+            "type": "integer"
+          },
+          "direct": {
+            "default": false,
+            "title": "Direct",
+            "type": "boolean"
+          },
+          "limit": {
+            "default": 10,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "origin",
+          "destination",
+          "depart_date"
+        ],
+        "title": "search_flightsArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "search_hotels",
+      "description": "Поиск отелей без перелёта (только проживание) на те же даты и состав, что и туры.",
+      "inputSchema": {
+        "properties": {
+          "departure_city": {
+            "title": "Departure City",
+            "type": "string"
+          },
+          "country": {
+            "title": "Country",
+            "type": "string"
+          },
+          "date_from": {
+            "title": "Date From",
+            "type": "string"
+          },
+          "date_to": {
+            "title": "Date To",
+            "type": "string"
+          },
+          "nights_min": {
+            "default": 7,
+            "title": "Nights Min",
+            "type": "integer"
+          },
+          "nights_max": {
+            "default": 10,
+            "title": "Nights Max",
+            "type": "integer"
+          },
+          "adults": {
+            "default": 2,
+            "title": "Adults",
+            "type": "integer"
+          },
+          "kids_ages": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Kids Ages"
+          },
+          "resort": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Resort"
+          },
+          "meal": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Meal"
+          },
+          "stars_min": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Stars Min"
+          },
+          "price_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Price Max"
+          },
+          "limit": {
+            "default": 10,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "departure_city",
+          "country",
+          "date_from",
+          "date_to"
+        ],
+        "title": "search_hotelsArguments",
+        "type": "object"
+      }
+    },
+    {
+      "name": "search_tours",
+      "description": "Поиск пакетных туров (перелёт + отель) сразу по двум источникам. Города и страны — по-русски. Занимает 10–15 секунд.",
+      "inputSchema": {
+        "properties": {
+          "departure_city": {
+            "title": "Departure City",
+            "type": "string"
+          },
+          "country": {
+            "title": "Country",
+            "type": "string"
+          },
+          "date_from": {
+            "title": "Date From",
+            "type": "string"
+          },
+          "date_to": {
+            "title": "Date To",
+            "type": "string"
+          },
+          "nights_min": {
+            "default": 7,
+            "title": "Nights Min",
+            "type": "integer"
+          },
+          "nights_max": {
+            "default": 10,
+            "title": "Nights Max",
+            "type": "integer"
+          },
+          "adults": {
+            "default": 2,
+            "title": "Adults",
+            "type": "integer"
+          },
+          "kids_ages": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Kids Ages"
+          },
+          "resort": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Resort"
+          },
+          "meal": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Meal"
+          },
+          "stars_min": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Stars Min"
+          },
+          "price_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Price Max"
+          },
+          "limit": {
+            "default": 10,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "departure_city",
+          "country",
+          "date_from",
+          "date_to"
+        ],
+        "title": "search_toursArguments",
+        "type": "object"
+      }
+    }
+  ],
+  "version": "1.0.0"
+}
