@@ -63,8 +63,131 @@
       }
     },
     {
+      "name": "get_cheapest_travelata_tours",
+      "description": "Быстрая подборка самых дешёвых пакетных туров только из Travelata. Один запрос вместо полного поиска по двум источникам.",
+      "inputSchema": {
+        "properties": {
+          "departure_city": {
+            "title": "Departure City",
+            "type": "string"
+          },
+          "country": {
+            "title": "Country",
+            "type": "string"
+          },
+          "date_from": {
+            "title": "Date From",
+            "type": "string"
+          },
+          "date_to": {
+            "title": "Date To",
+            "type": "string"
+          },
+          "nights_min": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Nights Min"
+          },
+          "nights_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Nights Max"
+          },
+          "adults": {
+            "default": 2,
+            "title": "Adults",
+            "type": "integer"
+          },
+          "kids_ages": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Kids Ages"
+          },
+          "resorts": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Resorts"
+          },
+          "meals": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Meals"
+          },
+          "stars_min": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Stars Min"
+          },
+          "limit": {
+            "default": 10,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "departure_city",
+          "country",
+          "date_from",
+          "date_to"
+        ],
+        "title": "get_cheapest_travelata_toursArguments",
+        "type": "object"
+      }
+    },
+    {
       "name": "get_tour_details",
-      "description": "Актуализация выбранного тура перед бронированием: подтверждённая цена, трансфер, номера. offer_id — из результатов search_tours или search_hotels.",
+      "description": "Актуализация выбранного тура перед бронированием: подтверждённая цена, трансфер, номера. offer_id — из результатов search_tours, get_cheapest_travelata_tours или search_hotels.",
       "inputSchema": {
         "properties": {
           "offer_id": {
@@ -435,5 +558,5 @@
       }
     }
   ],
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

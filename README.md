@@ -13,7 +13,7 @@ with current prices and booking links through **Aviasales**, **Travelata**,
 - Read-only search — booking and payment stay on the provider's website
 
 - **Endpoint:** `https://mcp.botclaw.ru/travel`
-- **Version:** `1.0.0`
+- **Version:** `1.1.0`
 
 ## Connect
 
@@ -110,6 +110,7 @@ Plan a week in Rome: flights, a hotel, and activities.
 |---|---|---|
 | Flights | Aviasales | Dated offers, passenger-aware search, and a monthly price calendar |
 | Package tours | Travelata and Level.Travel | Combined tour results with hotels, meals, dates, and booking links |
+| Quick tour shortlists | Travelata | The cheapest current package offers in one fast provider request |
 | Hotels | Level.Travel | Hotel-only stays for the requested dates and party |
 | Activities | Sputnik8 | Excursions, attraction tickets, and transfers |
 
@@ -120,6 +121,7 @@ Plan a week in Rome: flights, a hotel, and activities.
 | `search_flights` | Search flights for specific dates and passenger counts. |
 | `get_flight_price_calendar` | Compare flight prices across a month. |
 | `search_tours` | Search package tours in Travelata and Level.Travel together. |
+| `get_cheapest_travelata_tours` | Get a fast Travelata-only shortlist of the cheapest package tours. |
 | `search_hotels` | Search hotels without flights. |
 | `get_tour_details` | Refresh a selected offer's price, transfer, and room details. |
 | `search_activities` | Find excursions, tickets, and transfers in a city. |
