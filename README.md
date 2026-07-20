@@ -5,7 +5,7 @@
 Add travel search to **Claude**, **Codex**, **OpenClaw**, **Hermes**, or any
 MCP-compatible AI agent. Find flights, package tours, hotels, and activities
 with current prices and booking links through **Aviasales**, **Travelata**,
-**Level.Travel**, and **Sputnik8**.
+**Level.Travel**, **Tripster**, and **Sputnik8**.
 
 - Remote Streamable HTTP MCP — no local server to run
 - No signup, API key, or authentication required
@@ -13,7 +13,7 @@ with current prices and booking links through **Aviasales**, **Travelata**,
 - Read-only search — booking and payment stay on the provider's website
 
 - **Endpoint:** `https://mcp.botclaw.ru/travel`
-- **Version:** `1.1.0`
+- **Version:** `1.2.0`
 
 ## Connect
 
@@ -112,7 +112,19 @@ Plan a week in Rome: flights, a hotel, and activities.
 | Package tours | Travelata and Level.Travel | Combined tour results with hotels, meals, dates, and booking links |
 | Quick tour shortlists | Travelata | The cheapest current package offers in one fast provider request |
 | Hotels | Level.Travel | Hotel-only stays for the requested dates and party |
-| Activities | Sputnik8 | Excursions, attraction tickets, and transfers |
+| Activities | Tripster and Sputnik8 | Mixed excursions, attraction tickets, and transfers |
+
+### Activities
+
+`search_activities` combines Tripster and Sputnik8 results into one list. In
+addition to a city and optional text query, it accepts optional dates, party
+size, and a children-friendly filter. Sort by `recommended`, `price`,
+`rating`, or `reviews`.
+
+Each activity has a normalized `provider`, `price_unit`, and `price_text` so
+that the displayed price remains clear for per-person, per-group, or ticket
+offers. The server returns results from an available source if the other source
+is temporarily unavailable, without exposing provider errors to the agent.
 
 ## Tools
 
