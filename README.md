@@ -112,19 +112,21 @@ Plan a week in Rome: flights, a hotel, and activities.
 | Package tours | Travelata and Level.Travel | Combined tour results with hotels, meals, dates, and booking links |
 | Quick tour shortlists | Travelata | The cheapest current package offers in one fast provider request |
 | Hotels | Level.Travel | Hotel-only stays for the requested dates and party |
-| Activities | Tripster and Sputnik8 | Mixed excursions, attraction tickets, and transfers |
+| Activities | Tripster and Sputnik8 | Excursions, attraction tickets, and transfers from eligible sources |
 
 ### Activities
 
-`search_activities` combines Tripster and Sputnik8 results into one list. In
-addition to a city and optional text query, it accepts optional dates, party
-size, and a children-friendly filter. Sort by `recommended`, `price`,
+`search_activities` combines Tripster and Sputnik8 results when both sources
+support the requested filters. In addition to a city and optional text query,
+it accepts optional dates, party size, and a children-friendly filter. Date
+filters (`date_from` or `date_to`) and `children_allowed` use Tripster only;
+party size alone can use both sources. Sort by `recommended`, `price`,
 `rating`, or `reviews`.
 
 Each activity has a normalized `provider`, `price_unit`, and `price_text` so
 that the displayed price remains clear for per-person, per-group, or ticket
-offers. The server returns results from an available source if the other source
-is temporarily unavailable, without exposing provider errors to the agent.
+offers. The server returns results from eligible available sources without
+exposing provider errors to the agent.
 
 ## Tools
 
@@ -177,6 +179,14 @@ Hermes и другие AI-агенты с поддержкой MCP. Сервер
 Сервер выполняет только поиск. Бронирование и оплата происходят на сайте
 выбранного сервиса. Параметры поездки передаются Botclaw и перечисленным выше
 туристическим сервисам — не добавляйте в запрос лишние персональные данные.
+
+### Экскурсии
+
+`search_activities` объединяет результаты Tripster и Sputnik8, если оба
+источника поддерживают выбранные фильтры. Для фильтров `date_from`, `date_to`
+или `children_allowed` используется только Tripster; один параметр `persons`
+не исключает Sputnik8. Доступна сортировка `recommended`, `price`, `rating` и
+`reviews`.
 
 ## Support
 

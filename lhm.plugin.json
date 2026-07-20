@@ -3,13 +3,13 @@
   "authorUrl": "https://github.com/MissiaL",
   "category": "Travel & Transport",
   "cloudEndpoint": "https://mcp.botclaw.ru/travel",
-  "description": "MCP for travel search through Aviasales, Travelata, Level.Travel, Tripster, and Sputnik8. Find flights, package tours, hotels, and mixed activities with current prices and booking links. Activities support optional dates, party size, children, and recommended, price, rating, or reviews sorting; results include normalized provider, price_unit, and price_text fields with silent provider failover. Supports Russian city, country, and resort names. No API key required.",
+  "description": "MCP for travel search through Aviasales, Travelata, Level.Travel, Tripster, and Sputnik8. Find flights, package tours, hotels, and activities from eligible sources with current prices and booking links. Activities support optional dates, party size, children, and recommended, price, rating, or reviews sorting; date or children filters use Tripster only. Results include normalized provider, price_unit, and price_text fields with silent provider failover. Supports Russian city, country, and resort names. No API key required.",
   "homepage": "https://github.com/MissiaL/travel-search-ru-mcp",
   "icon": "✈️",
   "identifier": "missial-travel-search-ru-mcp",
   "localizations": [
     {
-      "description": "MCP для поиска путешествий через Aviasales, Travelata, Level.Travel, Tripster и Sputnik8. Помогает находить авиабилеты, пакетные туры, отели и смешанные экскурсии, сравнивать цены и получать ссылки для бронирования. Экскурсии поддерживают необязательные даты, состав группы, фильтр для детей и сортировку recommended, price, rating или reviews; результаты содержат нормализованные поля provider, price_unit и price_text с тихим failover источников. Поддерживаются русские названия городов, стран и курортов. API-ключ не требуется.",
+      "description": "MCP для поиска путешествий через Aviasales, Travelata, Level.Travel, Tripster и Sputnik8. Помогает находить авиабилеты, пакетные туры, отели и экскурсии из подходящих источников, сравнивать цены и получать ссылки для бронирования. Экскурсии поддерживают необязательные даты, состав группы, фильтр для детей и сортировку recommended, price, rating или reviews; при фильтрах по датам или детям используется только Tripster. Результаты содержат нормализованные поля provider, price_unit и price_text с тихим failover источников. Поддерживаются русские названия городов, стран и курортов. API-ключ не требуется.",
       "locale": "ru-RU",
       "name": "Travel Search RU MCP",
       "tags": [
