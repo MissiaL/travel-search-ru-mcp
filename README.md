@@ -3,9 +3,9 @@
 # Travel Search RU MCP
 
 Add travel search to **Claude**, **Codex**, **OpenClaw**, **Hermes**, or any
-MCP-compatible AI agent. Find flights, package tours, hotels, and activities
-with current prices and booking links through **Aviasales**, **Travelata**,
-**Level.Travel**, **Tripster**, and **Sputnik8**.
+MCP-compatible AI agent. Find flights, trains, package tours, hotels, and
+activities with booking links through **Aviasales**, **Travelata**,
+**Level.Travel**, **Tutu.ru**, **Tripster**, and **Sputnik8**.
 
 - Remote Streamable HTTP MCP — no local server to run
 - No signup, API key, or authentication required
@@ -13,7 +13,7 @@ with current prices and booking links through **Aviasales**, **Travelata**,
 - Read-only search — booking and payment stay on the provider's website
 
 - **Endpoint:** `https://mcp.botclaw.ru/travel`
-- **Version:** `1.2.0`
+- **Version:** `1.3.0`
 
 ## Connect
 
@@ -104,11 +104,16 @@ Compare package tours to Turkey for two adults and an 8-year-old child under 250
 Plan a week in Rome: flights, a hotel, and activities.
 ```
 
+```text
+Find trains from Moscow to Sochi on September 15 and sort by price.
+```
+
 ## What it searches
 
 | Category | Sources | What you get |
 |---|---|---|
 | Flights | Aviasales | Dated offers, passenger-aware search, and a monthly price calendar |
+| Trains | Tutu.ru | Cached schedules, indicative carriage fares, and dated result links; verify the selected date and availability on Tutu.ru |
 | Package tours | Travelata and Level.Travel | Combined tour results with hotels, meals, dates, and booking links |
 | Quick tour shortlists | Travelata | The cheapest current package offers in one fast provider request |
 | Hotels | Level.Travel | Hotel-only stays for the requested dates and party |
@@ -134,6 +139,7 @@ exposing provider errors to the agent.
 |---|---|
 | `search_flights` | Search flights for specific dates and passenger counts. |
 | `get_flight_price_calendar` | Compare flight prices across a month. |
+| `search_train_tickets` | Find cached train schedules and indicative fares for a route; verify date and availability through the result link. |
 | `search_tours` | Search package tours in Travelata and Level.Travel together. |
 | `get_cheapest_travelata_tours` | Get a fast Travelata-only shortlist of the cheapest package tours. |
 | `search_hotels` | Search hotels without flights. |
@@ -147,7 +153,9 @@ The server searches and compares offers only. It cannot book a trip or take a
 payment. Booking and payment happen on the travel provider's website after the
 user follows a result link. Prices and availability can change; refresh a
 selected package offer before booking and verify the final details on the
-provider's website.
+provider's website. Tutu.ru train data is not real-time: the requested date is
+used in result links but does not filter the upstream timetable, so the train,
+seats, and final fare must be checked on Tutu.ru.
 
 Search parameters are sent to Botclaw and the named travel services. They may
 include destinations, dates, party size, and children's ages when required for
@@ -158,8 +166,9 @@ requests.
 
 Travel Search RU MCP добавляет поиск путешествий в Claude, Codex, OpenClaw,
 Hermes и другие AI-агенты с поддержкой MCP. Сервер ищет авиабилеты, пакетные
-туры, отели без перелёта и экскурсии, сравнивает цены и возвращает ссылки для
-бронирования. Поддерживаются русские названия городов, стран и курортов.
+туры, поезда Tutu.ru, отели без перелёта и экскурсии, сравнивает цены и
+возвращает ссылки для бронирования. Поддерживаются русские названия городов,
+стран, курортов и железнодорожных направлений.
 Регистрация, API-ключ и локальный сервер не нужны.
 
 После подключения попробуйте:
@@ -175,6 +184,10 @@ Hermes и другие AI-агенты с поддержкой MCP. Сервер
 ```text
 Собери поездку в Рим на неделю: перелёт, отель и экскурсии.
 ```
+
+Для поездов Tutu.ru сервер возвращает кэшированное расписание и ориентировочные
+цены. Выбранная дата используется в ссылке, но не фильтрует само расписание API;
+рейс, места и итоговую цену нужно проверить на Tutu.ru.
 
 Сервер выполняет только поиск. Бронирование и оплата происходят на сайте
 выбранного сервиса. Параметры поездки передаются Botclaw и перечисленным выше

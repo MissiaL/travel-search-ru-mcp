@@ -3,13 +3,13 @@
   "authorUrl": "https://github.com/MissiaL",
   "category": "Travel & Transport",
   "cloudEndpoint": "https://mcp.botclaw.ru/travel",
-  "description": "MCP for travel search through Aviasales, Travelata, Level.Travel, Tripster, and Sputnik8. Find flights, package tours, hotels, and activities from eligible sources with current prices and booking links. Activities support optional dates, party size, children, and recommended, price, rating, or reviews sorting; date or children filters use Tripster only, while party size alone keeps Tripster and Sputnik8 eligible. Results include normalized provider, price_unit, and price_text fields with silent provider failover. Supports Russian city, country, and resort names. No API key required.",
+  "description": "MCP for travel search through Aviasales, Travelata, Level.Travel, Tutu.ru, Tripster, and Sputnik8. Find flights, cached train schedules with indicative fares, package tours, hotels, and activities with booking links. Tutu.ru train data is not real-time and must be verified on the result page for the selected date. Activities support optional dates, party size, children, and recommended, price, rating, or reviews sorting; date or children filters use Tripster only. Supports Russian location names. No API key required.",
   "homepage": "https://github.com/MissiaL/travel-search-ru-mcp",
   "icon": "✈️",
   "identifier": "missial-travel-search-ru-mcp",
   "localizations": [
     {
-      "description": "MCP для поиска путешествий через Aviasales, Travelata, Level.Travel, Tripster и Sputnik8. Помогает находить авиабилеты, пакетные туры, отели и экскурсии из подходящих источников, сравнивать цены и получать ссылки для бронирования. Экскурсии поддерживают необязательные даты, состав группы, фильтр для детей и сортировку recommended, price, rating или reviews; при фильтрах по датам или детям используется только Tripster, а параметр persons без этих фильтров оставляет доступными Tripster и Sputnik8. Результаты содержат нормализованные поля provider, price_unit и price_text с тихим failover источников. Поддерживаются русские названия городов, стран и курортов. API-ключ не требуется.",
+      "description": "MCP для поиска путешествий через Aviasales, Travelata, Level.Travel, Tutu.ru, Tripster и Sputnik8. Помогает находить авиабилеты, кэшированное расписание поездов с ориентировочными ценами, пакетные туры, отели и экскурсии, а также получать ссылки для бронирования. Данные Tutu.ru не работают в реальном времени: рейс, места и итоговую цену нужно проверять по ссылке на выбранную дату. Экскурсии поддерживают даты, состав группы, фильтр для детей и сортировку. Поддерживаются русские названия направлений. API-ключ не требуется.",
       "locale": "ru-RU",
       "name": "Travel Search RU MCP",
       "tags": [
@@ -17,7 +17,8 @@
         "авиабилеты",
         "туры",
         "отели",
-        "экскурсии"
+        "экскурсии",
+        "поезда"
       ]
     }
   ],
@@ -27,6 +28,8 @@
     "flights",
     "tours",
     "hotels",
+    "trains",
+    "rail",
     "activities"
   ],
   "tools": [
@@ -387,6 +390,48 @@
       }
     },
     {
+      "name": "search_train_tickets",
+      "description": "Поиск поездов Tutu.ru по направлению и дате. Расписание и цены ориентировочные, не в реальном времени; наличие проверяется по ссылке.",
+      "inputSchema": {
+        "properties": {
+          "origin": {
+            "title": "Origin",
+            "type": "string"
+          },
+          "destination": {
+            "title": "Destination",
+            "type": "string"
+          },
+          "depart_date": {
+            "title": "Depart Date",
+            "type": "string"
+          },
+          "sort": {
+            "default": "price",
+            "enum": [
+              "price",
+              "duration",
+              "departure"
+            ],
+            "title": "Sort",
+            "type": "string"
+          },
+          "limit": {
+            "default": 10,
+            "title": "Limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "origin",
+          "destination",
+          "depart_date"
+        ],
+        "title": "search_train_ticketsArguments",
+        "type": "object"
+      }
+    },
+    {
       "name": "search_hotels",
       "description": "Поиск отелей без перелёта (только проживание) на те же даты и состав, что и туры.",
       "inputSchema": {
@@ -617,5 +662,5 @@
       }
     }
   ],
-  "version": "1.2.0"
+  "version": "1.3.0"
 }
