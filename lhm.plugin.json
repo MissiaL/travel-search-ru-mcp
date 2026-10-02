@@ -35,7 +35,7 @@
   "tools": [
     {
       "name": "get_flight_price_calendar",
-      "description": "Календарь цен на авиабилеты за месяц: цена по дням и самый дешёвый день.",
+      "description": "Календарь цен на авиабилеты за месяц (YYYY-MM): цена по дням и самый дешёвый день.",
       "inputSchema": {
         "properties": {
           "origin": {
@@ -47,6 +47,7 @@
             "type": "string"
           },
           "month": {
+            "description": "Месяц, YYYY-MM",
             "title": "Month",
             "type": "string"
           },
@@ -79,10 +80,12 @@
             "type": "string"
           },
           "date_from": {
+            "description": "Начало окна дат заезда/вылета, YYYY-MM-DD, не в прошлом",
             "title": "Date From",
             "type": "string"
           },
           "date_to": {
+            "description": "Конец окна, YYYY-MM-DD; окно не длиннее 30 дней",
             "title": "Date To",
             "type": "string"
           },
@@ -143,6 +146,7 @@
               }
             ],
             "default": null,
+            "description": "До 5 курортов страны, по-русски",
             "title": "Resorts"
           },
           "meals": {
@@ -158,6 +162,7 @@
               }
             ],
             "default": null,
+            "description": "Коды питания: RO — без питания, BB — завтраки, HB — полупансион, FB — полный пансион, AI — всё включено, UAI — ультра всё включено",
             "title": "Meals"
           },
           "stars_min": {
@@ -334,6 +339,7 @@
             "type": "string"
           },
           "depart_date": {
+            "description": "Дата вылета, YYYY-MM-DD, не в прошлом",
             "title": "Depart Date",
             "type": "string"
           },
@@ -347,6 +353,7 @@
               }
             ],
             "default": null,
+            "description": "Дата обратного вылета, YYYY-MM-DD. Поездку дольше 30 дней сервер вернёт двумя билетами в одну сторону (leg)",
             "title": "Return Date"
           },
           "adults": {
@@ -366,6 +373,7 @@
           },
           "trip_class": {
             "default": 0,
+            "description": "0 — эконом, 1 — бизнес, 2 — первый (цены — эконом)",
             "title": "Trip Class",
             "type": "integer"
           },
@@ -445,20 +453,24 @@
             "type": "string"
           },
           "date_from": {
+            "description": "Начало окна дат заезда/вылета, YYYY-MM-DD, не в прошлом",
             "title": "Date From",
             "type": "string"
           },
           "date_to": {
+            "description": "Конец окна, YYYY-MM-DD; окно не длиннее 30 дней",
             "title": "Date To",
             "type": "string"
           },
           "nights_min": {
             "default": 7,
+            "description": "Минимум ночей. Передавай явно",
             "title": "Nights Min",
             "type": "integer"
           },
           "nights_max": {
             "default": 10,
+            "description": "Максимум ночей; Level.Travel ищет не больше 5 вариантов подряд",
             "title": "Nights Max",
             "type": "integer"
           },
@@ -504,6 +516,7 @@
               }
             ],
             "default": null,
+            "description": "Код питания: RO — без питания, BB — завтраки, HB — полупансион, FB — полный пансион, AI — всё включено, UAI — ультра всё включено",
             "title": "Meal"
           },
           "stars_min": {
@@ -560,20 +573,24 @@
             "type": "string"
           },
           "date_from": {
+            "description": "Начало окна дат заезда/вылета, YYYY-MM-DD, не в прошлом",
             "title": "Date From",
             "type": "string"
           },
           "date_to": {
+            "description": "Конец окна, YYYY-MM-DD; окно не длиннее 30 дней",
             "title": "Date To",
             "type": "string"
           },
           "nights_min": {
             "default": 7,
+            "description": "Минимум ночей. Передавай явно",
             "title": "Nights Min",
             "type": "integer"
           },
           "nights_max": {
             "default": 10,
+            "description": "Максимум ночей; Level.Travel ищет не больше 5 вариантов подряд",
             "title": "Nights Max",
             "type": "integer"
           },
@@ -619,6 +636,7 @@
               }
             ],
             "default": null,
+            "description": "Код питания: RO — без питания, BB — завтраки, HB — полупансион, FB — полный пансион, AI — всё включено, UAI — ультра всё включено",
             "title": "Meal"
           },
           "stars_min": {
