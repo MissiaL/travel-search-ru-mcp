@@ -13,7 +13,7 @@ activities with booking links through **Aviasales**, **Travelata**,
 - Read-only search — booking and payment stay on the provider's website
 
 - **Endpoint:** `https://mcp.botclaw.ru/travel`
-- **Version:** `1.3.0`
+- **Version:** `1.4.0`
 
 ## Connect
 

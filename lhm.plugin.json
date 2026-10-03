@@ -212,7 +212,7 @@
     },
     {
       "name": "list_destinations",
-      "description": "Справка: города вылета и доступные страны. Если передать страну — вернёт её курорты. Вызывай, когда название не распозналось.",
+      "description": "Справка: без страны — города вылета и страны; со страной — точные названия её курортов для параметра resort.",
       "inputSchema": {
         "properties": {
           "country": {
@@ -504,6 +504,7 @@
               }
             ],
             "default": null,
+            "description": "Курорт как в list_destinations (для района внутри региона — «Регион: Район»)",
             "title": "Resort"
           },
           "meal": {
@@ -541,12 +542,55 @@
               }
             ],
             "default": null,
+            "description": "Бюджет в рублях за всех туристов и всё проживание",
             "title": "Price Max"
           },
           "limit": {
             "default": 10,
             "title": "Limit",
             "type": "integer"
+          },
+          "hotels": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Названия конкретных отелей для сравнения (латиницей, как пишет отель). Ответ добавит named_hotels: подходит, не проходит фильтры (и почему) или не найден",
+            "title": "Hotels"
+          },
+          "beach_distance_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Максимум метров до пляжа; отели без этих данных скрываются",
+            "title": "Beach Distance Max"
+          },
+          "beach_line_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Максимальная линия пляжа: 1 — первая линия; без данных скрываются",
+            "title": "Beach Line Max"
           }
         },
         "required": [
@@ -624,6 +668,7 @@
               }
             ],
             "default": null,
+            "description": "Курорт как в list_destinations (для района внутри региона — «Регион: Район»)",
             "title": "Resort"
           },
           "meal": {
@@ -661,12 +706,55 @@
               }
             ],
             "default": null,
+            "description": "Бюджет в рублях за всех туристов и всё проживание",
             "title": "Price Max"
           },
           "limit": {
             "default": 10,
             "title": "Limit",
             "type": "integer"
+          },
+          "hotels": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Названия конкретных отелей для сравнения (латиницей, как пишет отель). Ответ добавит named_hotels: подходит, не проходит фильтры (и почему) или не найден",
+            "title": "Hotels"
+          },
+          "beach_distance_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Максимум метров до пляжа; отели без этих данных скрываются",
+            "title": "Beach Distance Max"
+          },
+          "beach_line_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Максимальная линия пляжа: 1 — первая линия; без данных скрываются",
+            "title": "Beach Line Max"
           }
         },
         "required": [
@@ -680,5 +768,5 @@
       }
     }
   ],
-  "version": "1.3.0"
+  "version": "1.4.0"
 }
