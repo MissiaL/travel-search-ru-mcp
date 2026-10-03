@@ -85,7 +85,7 @@
             "type": "string"
           },
           "date_to": {
-            "description": "Конец окна, YYYY-MM-DD; окно не длиннее 30 дней",
+            "description": "Конец окна, YYYY-MM-DD; окно не длиннее 31 дня (календарный месяц)",
             "title": "Date To",
             "type": "string"
           },
@@ -131,6 +131,7 @@
               }
             ],
             "default": null,
+            "description": "Возраст каждого ребёнка на момент поездки, 0–17",
             "title": "Kids Ages"
           },
           "resorts": {
@@ -458,7 +459,7 @@
             "type": "string"
           },
           "date_to": {
-            "description": "Конец окна, YYYY-MM-DD; окно не длиннее 30 дней",
+            "description": "Конец окна, YYYY-MM-DD; окно не длиннее 31 дня (календарный месяц)",
             "title": "Date To",
             "type": "string"
           },
@@ -492,6 +493,7 @@
               }
             ],
             "default": null,
+            "description": "Возраст каждого ребёнка на момент поездки, 0–17",
             "title": "Kids Ages"
           },
           "resort": {
@@ -591,6 +593,32 @@
             "default": null,
             "description": "Максимальная линия пляжа: 1 — первая линия; без данных скрываются",
             "title": "Beach Line Max"
+          },
+          "stars_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Максимум звёзд; «ровно 4★» = stars_min 4 и stars_max 4",
+            "title": "Stars Max"
+          },
+          "center_distance_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Максимум метров до центра города («в центре»); без данных скрываются",
+            "title": "Center Distance Max"
           }
         },
         "required": [
@@ -622,7 +650,7 @@
             "type": "string"
           },
           "date_to": {
-            "description": "Конец окна, YYYY-MM-DD; окно не длиннее 30 дней",
+            "description": "Конец окна, YYYY-MM-DD; окно не длиннее 31 дня (календарный месяц)",
             "title": "Date To",
             "type": "string"
           },
@@ -656,6 +684,7 @@
               }
             ],
             "default": null,
+            "description": "Возраст каждого ребёнка на момент поездки, 0–17",
             "title": "Kids Ages"
           },
           "resort": {
@@ -755,6 +784,32 @@
             "default": null,
             "description": "Максимальная линия пляжа: 1 — первая линия; без данных скрываются",
             "title": "Beach Line Max"
+          },
+          "stars_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Максимум звёзд; «ровно 4★» = stars_min 4 и stars_max 4",
+            "title": "Stars Max"
+          },
+          "center_distance_max": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "Максимум метров до центра города («в центре»); без данных скрываются",
+            "title": "Center Distance Max"
           }
         },
         "required": [
@@ -768,5 +823,5 @@
       }
     }
   ],
-  "version": "1.4.0"
+  "version": "1.5.0"
 }
