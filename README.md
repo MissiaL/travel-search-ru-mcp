@@ -5,7 +5,8 @@
 Add travel search to **Claude**, **Codex**, **OpenClaw**, **Hermes**, or any
 MCP-compatible AI agent. Find flights, trains, package tours, hotels, and
 activities with booking links through **Aviasales**, **Travelata**,
-**Level.Travel**, **Tutu.ru**, **Tripster**, and **Sputnik8**.
+**Level.Travel**, **Tutu.ru**, **Tripster**, and **Sputnik8**, plus
+**Trip.com** hotel result links.
 
 - Remote Streamable HTTP MCP — no local server to run
 - No signup, API key, or authentication required
@@ -13,7 +14,7 @@ activities with booking links through **Aviasales**, **Travelata**,
 - Read-only search — booking and payment stay on the provider's website
 
 - **Endpoint:** `https://mcp.botclaw.ru/travel`
-- **Version:** `1.5.0`
+- **Version:** `1.6.0`
 
 ## Connect
 
